@@ -1,0 +1,308 @@
+/* calculate variables
+   mobile-responsive */
+:root{
+    --outerGameWidth: 560px;
+    --pictureWidthHeight: 50px;
+}
+
+body{
+    margin-left: 20px;
+}
+
+h1{
+    margin-left: 20px;
+    text-decoration: underline;
+}
+
+#gameContainer{
+    display: grid;
+    /* width: 560px; */
+    width: var(--outerGameWidth);
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.game{
+    display: grid;
+    grid-template-rows: repeat(3, var(--pictureWidthHeight));
+    grid-template-columns: repeat(3, var(--pictureWidthHeight));
+    /* grid-template-rows: repeat(3, 50);
+    grid-template-columns: repeat(3, 50); */
+    padding: 10px;
+    /* gap: 2px; */
+    justify-content: center;
+    height: calc(var(--pictureWidthHeight) * 3);
+    /* height: 150px; */
+}
+
+
+
+#game1,#game2,#game4,#game5,
+#game7,#game8{
+    border-right: 4px solid black;
+}
+#game1, #game2, #game3,
+#game4, #game5, #game6{
+    border-bottom: 4px solid black;
+}
+
+img{
+    /* border: 1px solid black; */
+    padding: 10px;
+    /* opacity: 25%; */
+}
+#_100, #_200, #_300, #_400, #_500, #_600, #_700, #_800, #_900{
+    position: relative;
+    top: -75px;
+    left: 75px;
+    width: 5px;
+    height: 5px;
+    scale: 3000%;
+    padding: 0px;
+    display: none;
+    /* display: unset; */
+}
+
+/* game1 */
+#_111,#_112,#_113,
+#_121,#_122,#_123{
+    border-bottom: 2px solid black;
+}
+#_111,#_112,
+#_121,#_122,
+#_131,#_132{
+    border-right: 2px solid black;
+}
+
+/* game2 */
+#_211,#_212,#_213,
+#_221,#_222,#_223{
+    border-bottom: 2px solid black;
+}
+#_211,#_212,
+#_221,#_222,
+#_231,#_232{
+    border-right: 2px solid black;
+}
+
+/* game3 */
+#_311,#_312,#_313,
+#_321,#_322,#_323{
+    border-bottom: 2px solid black;
+}
+#_311,#_312,
+#_321,#_322,
+#_331,#_332{
+    border-right: 2px solid black;
+}
+
+/* game4 */
+#_411,#_412,#_413,
+#_421,#_422,#_423{
+    border-bottom: 2px solid black;
+}
+#_411,#_412,
+#_421,#_422,
+#_431,#_432{
+    border-right: 2px solid black;
+}
+
+/* game5 */
+#_511,#_512,#_513,
+#_521,#_522,#_523{
+    border-bottom: 2px solid black;
+}
+#_511,#_512,
+#_521,#_522,
+#_531,#_532{
+    border-right: 2px solid black;
+}
+
+/* game6 */
+#_611,#_612,#_613,
+#_621,#_622,#_623{
+    border-bottom: 2px solid black;
+}
+#_611,#_612,
+#_621,#_622,
+#_631,#_632{
+    border-right: 2px solid black;
+}
+
+/* game7 */
+#_711,#_712,#_713,
+#_721,#_722,#_723{
+    border-bottom: 2px solid black;
+}
+#_711,#_712,
+#_721,#_722,
+#_731,#_732{
+    border-right: 2px solid black;
+}
+
+/* game8 */
+#_811,#_812,#_813,
+#_821,#_822,#_823{
+    border-bottom: 2px solid black;
+}
+#_811,#_812,
+#_821,#_822,
+#_831,#_832{
+    border-right: 2px solid black;
+}
+
+/* game9 */
+#_911,#_912,#_913,
+#_921,#_922,#_923{
+    border-bottom: 2px solid black;
+}
+#_911,#_912,
+#_921,#_922,
+#_931,#_932{
+    border-right: 2px solid black;
+}
+
+.gray{
+    /* border: 2px solid orangered; */
+    box-shadow: inset 0 0 10px #777777;
+}
+
+a{
+    font-size: 1.5em;
+}
+
+#feedback{
+    font-size: 1.5em;
+}
+
+@media screen and (max-width : 585px){
+    /* revert == unset maar gebruikt user agent stylesheet default values */
+    body{
+        margin-left: revert;
+    }
+    #gameContainer{
+        width: calc(var(--outerGameWidth) * 0.5);
+        /* overwrite above rule, it was an arbitrary scale adjustment, gridsize = 117(including border-line) 
+           hence, -4(=1borderline width, 3minigames+2border-lines)117+117+113*/
+        width: calc(117px * 3 - 4px);
+    }
+    img{
+        padding: unset;
+    }
+    .game{
+        grid-template-rows: repeat(3, calc(var(--pictureWidthHeight) - 19px));
+        grid-template-columns: repeat(3, calc(var(--pictureWidthHeight) - 19px));
+        /* grid-template-rows: repeat(3, 40px);
+        grid-template-columns: repeat(3, 40px); */
+        height: calc(((var(--pictureWidthHeight) - 19px) * 3));
+    }
+
+    /* game1 */
+    #_111,#_112,#_113,
+    #_121,#_122,#_123{
+        border-bottom: 1px solid black;
+    }
+    #_111,#_112,
+    #_121,#_122,
+    #_131,#_132{
+        border-right: 1px solid black;
+    }
+
+    /* game2 */
+    #_211,#_212,#_213,
+    #_221,#_222,#_223{
+        border-bottom: 1px solid black;
+    }
+    #_211,#_212,
+    #_221,#_222,
+    #_231,#_232{
+        border-right: 1px solid black;
+    }
+
+    /* game3 */
+    #_311,#_312,#_313,
+    #_321,#_322,#_323{
+        border-bottom: 1px solid black;
+    }
+    #_311,#_312,
+    #_321,#_322,
+    #_331,#_332{
+        border-right: 1px solid black;
+    }
+
+    /* game4 */
+    #_411,#_412,#_413,
+    #_421,#_422,#_423{
+        border-bottom: 2px solid black;
+    }
+    #_411,#_412,
+    #_421,#_422,
+    #_431,#_432{
+        border-right: 1px solid black;
+    }
+
+    /* game5 */
+    #_511,#_512,#_513,
+    #_521,#_522,#_523{
+        border-bottom: 1px solid black;
+    }
+    #_511,#_512,
+    #_521,#_522,
+    #_531,#_532{
+        border-right: 1px solid black;
+    }
+
+    /* game6 */
+    #_611,#_612,#_613,
+    #_621,#_622,#_623{
+        border-bottom: 1px solid black;
+    }
+    #_611,#_612,
+    #_621,#_622,
+    #_631,#_632{
+        border-right: 1px solid black;
+    }
+
+    /* game7 */
+    #_711,#_712,#_713,
+    #_721,#_722,#_723{
+        border-bottom: 1px solid black;
+    }
+    #_711,#_712,
+    #_721,#_722,
+    #_731,#_732{
+        border-right: 1px solid black;
+    }
+
+    /* game8 */
+    #_811,#_812,#_813,
+    #_821,#_822,#_823{
+        border-bottom: 1px solid black;
+    }
+    #_811,#_812,
+    #_821,#_822,
+    #_831,#_832{
+        border-right: 1px solid black;
+    }
+
+    /* game9 */
+    #_911,#_912,#_913,
+    #_921,#_922,#_923{
+        border-bottom: 1px solid black;
+    }
+    #_911,#_912,
+    #_921,#_922,
+    #_931,#_932{
+        border-right: 1px solid black;
+    }
+    #_100, #_200, #_300, #_400, #_500, #_600, #_700, #_800, #_900{
+        position: relative;
+        top: -50px;
+        left: 43px;
+        width: 5px;
+        height: 5px;
+        scale: 2000%;
+        padding: 0px;
+        display: none;
+        /* display: unset; */
+    }
+}

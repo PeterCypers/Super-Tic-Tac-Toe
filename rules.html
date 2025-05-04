@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STTT-Rules</title>
+    <link rel="shortcut icon" href="images/pngtree-letter-t-icon-png-image_6187893.png" type="image/x-icon">
+    <style>
+        button{
+            padding: 5px;
+            margin-top: 30px;
+            margin-right: 10px;
+        }
+        main{
+            background-color: cadetblue;
+            padding: 15px;
+            /* max-width: fit-content; */
+        }
+        #gamelink{
+            font-size: 1.5em;
+        }
+        body{
+            background-color: gray;
+            margin: 10px;
+        }
+    </style>
+    <script>
+        //English
+        const enText1 = "Based on the game introduced by Vsauce.";
+        const enHeader = "Rules:";
+        const enText2 = "Setup: <br> Super Tic Tac Toe begins with the usual 3x3 grid, in each of it's squares another tic tac toe game is placed. Each square of the tic tac toe is now also a tic tac toe game.";
+        const enText3 = "First move: <br> The first player can play in any of these 81 spaces.";
+        const enText4 = "Gameplay example: <br> First player chooses middle game top right square and draws down an X. The next player must play in the square who's location corresponds with the square the previous player chose -> They must play in the game at the top right square.";
+        const enText5 = "If a player gets 3 in a row in one of the games, that entire square is marked for them.";
+        const enText6 = "If a player wins 3 small games in a row they win the game.";
+        const enText7 = "If a player is ever forced to play in a game that's already won, they can't, instead they get to play anywhere.";
+        const enText8 = "In case of draws: <br>If a small game draws, it remains un-earned (neither an X nor an O is placed over it). If the entire game ends with a draw, one tie-breaker option is to give the win to the player who won the most small games.";
+        const enLink = "game-page";
+        const enA = [enText1, enHeader, enText2, enText3, enText4, enText5, enText6, enText7, enText8, enLink];
+        //Dutch
+        const nlText1 = "Gebaseerd op het spel geïntroduceerd door Vsauce.";
+        const nlHeader = "Regels:";
+        const nlText2 = "Opzet: <br> Super Tic Tac Toe begint met het gewoonlijke 3x3 grid, in elke vakje is er echter nog een Tic Tac Toe spel die gespeeld kan worden.";
+        const nlText3 = "Eérste zet: <br> De eerste speler mag één van de 81 vakjes kiezen om hun teken te plaatsen.";
+        const nlText4 = "Spel voorbeeld: <br> De eerste speler koos in het middelste spel het rechter-bovenste vakje en plaatst een X. De volgende speler moet nu in het spel spelen dat overeenkomt met de positie van dat rechter-bovenste vakje, namelijk het rechter-bovenste spel.";
+        const nlText5 = "Als een speler 3 tekens op een rij (horizontaal, diagonaal en verticaal) kan plaatsen in één van de mini-spellen dan wordt hun teken op dat spel gezet.";
+        const nlText6 = "Als een speler 3 mini-spellen op een rij wint(hor,vert,diag), dan wint hij het volledige spel.";
+        const nlText7 = "Als een speler moet spelen op een mini-spel dat al uitgespeeld was, dan mag hij zelf een mini-spel kiezen om in te spelen.";
+        const nlText8 = "In geval van en gelijkspel: <br> Als een mini-spel met gelijkspel eindigt dan krijgt geen enkele speler dat mini-spel vakje(X noch O wordt als teken gezet op dat spel). Als het volledige spel eindigt met een gelijkspel dan is er een tie-breaker: De speler die het meeste mini-spellen gewonnen heeft krijgt de overwinning. Bij gelijke aantal mini-spel overwinningen: Het is nu gelijkspel.";
+        const nlLink = "spel-pagina";
+        const nlA = [nlText1, nlHeader, nlText2, nlText3, nlText4, nlText5, nlText6, nlText7, nlText8, nlLink];
+
+        function init(){
+            const enButton = document.getElementById("enButton");
+            const nlButton = document.getElementById("nlButton");
+            const p1 = document.getElementById("p1");
+            const h1 = document.getElementById("h1");
+            const p2 = document.getElementById("p2");
+            const p3 = document.getElementById("p3");
+            const p4 = document.getElementById("p4");
+            const p5 = document.getElementById("p5");
+            const p6 = document.getElementById("p6");
+            const p7 = document.getElementById("p7");
+            const p8 = document.getElementById("p8");
+            const link = document.getElementById("gamelink");
+            const elA = [p1, h1, p2, p3, p4, p5, p6, p7, p8, link];
+
+            enButton.onclick = () => {
+                for (let i = 0; i < elA.length; i++) {
+                    elA[i].innerHTML = enA[i];
+                }
+            }
+
+            nlButton.onclick = () => {
+                for (let i = 0; i < elA.length; i++) {
+                    elA[i].innerHTML = nlA[i];
+                }
+            }
+        }
+
+        window.onload = init;
+    </script>
+</head>
+<body>
+    <main>
+
+    
+        <a href="index.html" id="gamelink">game-page</a>
+        <div>
+            <button id="enButton">EN</button><button id="nlButton">NL</button>
+        </div>
+        <p id="p1">Based on the game introduced by Vsauce</p>
+        <p>link: <a href="https://www.youtube.com/shorts/_Na3a1ZrX7c" target="_blank">Vsauce YouTube Video</a></p>
+        <h1 id="h1">Rules:</h1>
+        <p id="p2">Setup: <br>
+            Super tic tac toe begins with the usual 3x3 grid, in each of it's squares
+            another tic tac toe game is placed. Each square of the tic tac toe
+            is now also a tic tac toe game.</p>
+        <p id="p3">First move: <br>
+            The first player can play in any of these 81 spaces.</p>
+        <p id="p4">Gameplay example: <br> First player chooses middle game top right square and draws down an X. 
+            The next player must play in the square who's location corresponds with the square the previous player chose 
+            -> They must play in the game at the top right square.
+        </p>
+        <p id="p5">If a player gets 3 in a row in one of the games, that entire square is marked
+            for them.</p>
+        <p id="p6">If a player wins 3 small games in a row they win the game.</p>
+        <p id="p7">If a player is ever forced to play in a game that's already won, they can't,
+            instead they get to play anywhere.</p>
+        <p id="p8">In case of draws: <br>
+            If a small game draws, it remains un-earned (neither an X nor an O is placed over it). 
+            If the entire game ends with a draw, one tie-breaker option is to give the win to the player 
+            who won the most small games.</p>
+    </main>
+</body>
+</html>

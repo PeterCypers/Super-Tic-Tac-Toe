@@ -1,0 +1,194 @@
+<html>
+
+<head>
+  <title></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="css/oxo.css" rel="stylesheet" />
+  <script>
+    /*********************************************************** SCRIPT START*/
+
+class Spelbord {
+  #bord;
+  constructor() {
+    this.#bord = [];
+    for (let rij = 0; rij < 3; rij++) {
+      this.#bord[rij] = [];
+      for (let kol = 0; kol < 3; kol++) {
+        this.#bord[rij][kol] = '';
+      }
+    }
+  }
+
+  get bord() {
+    return this.#bord;
+  }
+
+  plaatsSymbool(symbool, rij, kol) {
+    this.#bord[rij][kol] = symbool;
+  }
+
+  geefSymbool(rij, kol) {
+    return this.#bord[rij][kol];
+  }
+
+  isVrij(rij, kol) {
+    return !this.#bord[rij][kol];
+  }
+
+  bevatDrieOpEenRij(symbool, rij, kol) {
+    const isDrieOpEenRij = function (drieCellen) {
+      // for (const s of drieCellen) if (s !== symbool || !s) return false;
+      // return true;
+      return drieCellen.every(cell => cell === symbool);
+    };
+    // horizontaal
+    if (isDrieOpEenRij(this.#bord[rij])) return true;
+    // verticaal
+    const kolom = [];
+    for (let r = 0; r < 3; r++) {
+      kolom.push(this.#bord[r][kol]);
+    }
+    if (isDrieOpEenRij(kolom)) return true;
+    // diagonalen
+    // const diagonaal1 = [];
+    // const diagonaal2 = [];
+    // for (let index = 0; index < 3; index++) {
+    //   diagonaal1.push(this.#bord[index][index]);
+    //   diagonaal2.push(this.#bord[index][2 - index]);
+    // }
+    const diagonaal1 = this.#bord.reduce((pv, elem, i) => {
+      return pv.concat(elem[i]);
+    }, []);
+    const diagonaal2 = this.#bord.reduce((pv, elem, i) => {
+      return pv.concat(elem[2-i]);
+    }, []);
+    return isDrieOpEenRij(diagonaal1) || isDrieOpEenRij(diagonaal2);
+  }
+
+  get isVolzet() {
+    // for (const rij of this.#bord) for (const kol of rij) if (!kol) return false;
+    // return true;
+    return this.#bord.every((rij) => {
+      return rij[0] && rij[1] && rij[2];
+    });
+  }
+}
+
+/*********************************************************** */
+
+class Spel {
+  #spelbord = new Spelbord();
+  #tePlaatsenSymbool = "O";
+  #geplaatsteSymbool = "X";
+  #winnaarsSymbool = "";
+
+  plaatsSymbool(rij, kol) {
+    if (!this.isEindeSpel) {
+      if (this.spelbord.isVrij(rij, kol)) {
+        this.spelbord.plaatsSymbool(this.tePlaatsenSymbool, rij, kol);
+        [this.#tePlaatsenSymbool, this.#geplaatsteSymbool] = [
+          this.geplaatsteSymbool,
+          this.tePlaatsenSymbool,
+        ];
+        if (this.spelbord.bevatDrieOpEenRij(this.geplaatsteSymbool, rij, kol))
+          this.#winnaarsSymbool = this.geplaatsteSymbool;
+      }
+    }
+  }
+
+  get isEindeSpel() {
+    return this.spelbord.isVolzet || this.winnaarsSymbool;
+  }
+
+  get spelbord() {
+    return this.#spelbord;
+  }
+
+  get winnaarsSymbool() {
+    return this.#winnaarsSymbool;
+  }
+
+  get geplaatsteSymbool() {
+    return this.#geplaatsteSymbool;
+  }
+
+  get tePlaatsenSymbool() {
+    return this.#tePlaatsenSymbool;
+  }
+}
+
+/*********************************************************** */
+
+class OxoComponent {
+  #spel;
+
+  constructor() {
+    this.#spel = new Spel();
+    const imgElementen = document.getElementsByTagName("img");
+    for (const img of imgElementen) {
+      img.onclick = () => {
+        const [rij, kol] = img.id;
+        this.#spel.plaatsSymbool(rij - 1, kol - 1);
+        this.#toHtml();
+      };
+    }
+    this.#toHtml();
+  }
+
+  #toHtml() {
+    const { spelbord, tePlaatsenSymbool, winnaarsSymbool, isEindeSpel } =
+      this.#spel;
+    for (let rij = 0; rij < 3; rij++) {
+      for (let kol = 0; kol < 3; kol++) {
+        const symbool = spelbord.geefSymbool(rij, kol);
+        const id = [rij + 1, kol + 1].join("");
+        document.getElementById(id).src = `./images/${
+          symbool ? symbool : "wit"
+        }.png`;
+      }
+    }
+    if (winnaarsSymbool)
+      document.getElementById(
+        "message"
+      ).innerText = `Proficiat, speler ${winnaarsSymbool} wint`;
+    else if (isEindeSpel)
+      document.getElementById("message").innerText = `Gelijkspel!`;
+    else
+      document.getElementById(
+        "message"
+      ).innerText = `Speler ${tePlaatsenSymbool} is aan de beurt`;
+  }
+}
+
+/*********************************************************** */
+
+function init() {
+  const component = new OxoComponent();
+}
+
+window.onload = init;
+
+/***********************************************************  SCRIPT END*/
+  </script>
+</head>
+
+<body>
+  <h1>OXO</h1>
+  <div>
+    <img id="11" alt="blanco" />
+    <img id="12" alt="blanco" />
+    <img id="13" alt="blanco" />
+    <br />
+    <img id="21" alt="blanco" />
+    <img id="22" alt="blanco" />
+    <img id="23" alt="blanco" />
+    <br />
+    <img id="31" alt="blanco" />
+    <img id="32" alt="blanco" />
+    <img id="33" alt="blanco" />
+    <br />
+  </div>
+  <div id="message"></div>
+</body>
+
+</html>

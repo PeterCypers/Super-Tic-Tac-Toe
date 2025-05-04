@@ -1,0 +1,29 @@
+based on the game introduced by Vsauce(a backup exists):
+https://www.youtube.com/shorts/_Na3a1ZrX7c
+
+Setup:
+Super tic tac toe begins with the usual 3x3 grid, in each of it's squares
+another tic tac toe game is placed. Each square of the tic tac toe
+is now also a tic tac toe game.
+
+First move:
+The first player can play in any of these 81 spaces.
+
+Gameplay example:
+First player chooses middle game top right square and draws down an X.
+The next player must play in the square who's location corresponds with
+the square the previous player chose -> They must play in the game at
+the top right square.
+
+If a player gets 3 in a row in one of the games, that entire square is marked
+for them.
+
+If a player wins 3 small games in a row they win the game.
+
+If a player is ever forced to play in a game that's already won, they can't,
+instead they get to play anywhere.
+
+In case of draws:
+If a small game draws, it remains un-earned (neither an X nor an O is placed over it). 
+If the entire game ends with a draw, one tie-breaker option is to give the win to the player 
+who won the most small games.
